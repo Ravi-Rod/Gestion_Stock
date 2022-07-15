@@ -16,7 +16,7 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        $categories = Categorie::all();
+        $categories = categorie::all();
         return view('categories.index', compact('categories'));
     }
 
@@ -48,7 +48,7 @@ class CategorieController extends Controller
 
         event(new Registered($categorie));
 
-        return back()->with('message', "La categorie a bien été créée !");
+        return back()->with('message', "Le categorie a bien été créée !");
     }
 
     /**
@@ -88,7 +88,7 @@ class CategorieController extends Controller
         ]);
         $categorie->nom = $request->nom;
         $categorie->save();
-        return back()->with('message', "La categorie a bien été modifié !");
+        return back()->with('message', "Le categorie a bien été modifié !");
     }
 
     /**

@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('/image') }}/Dimonika01.jpg" alt="" style="width: 64px" />
+                        <img src="{{ asset('/image') }}/cdd1.jpg" alt="" style="width: 64px" />
                     </a>
                 </div>
 
@@ -19,19 +19,19 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('role.index')" :active="request()->routeIs('role.index')">
-                        {{ __('Role') }}
+                        {{ __('Roles') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
-                        {{ __('Categorie') }}
+                        {{ __('Categories') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('produit.index')" :active="request()->routeIs('produit.index')">
-                        {{ __('Produit') }}
+                        {{ __('Produits') }}
                     </x-nav-link>
                 </div>
 

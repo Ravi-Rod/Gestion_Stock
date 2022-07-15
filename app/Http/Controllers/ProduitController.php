@@ -117,5 +117,8 @@ class ProduitController extends Controller
     public function destroy(Produit $produit)
     {
         $produit->delete();
+        $produits = Produit::all();
+        $categories = Categorie::orderBy('nom')->get();
+        return view('produits.index', compact('categories'), compact('produits'));
     }
 }

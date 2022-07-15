@@ -111,5 +111,8 @@ class SortieController extends Controller
     public function destroy(sortie $sortie)
     {
         $sortie->delete();
+        $sorties = Sortie::all();
+        $produits = Produit::orderBy('libelle')->get();
+        return view('sorties.index', compact('produits'), compact('sorties'));
     }
 }

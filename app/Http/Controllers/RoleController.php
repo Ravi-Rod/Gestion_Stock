@@ -100,5 +100,7 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
+        $roles = Role::all();
+        return view('roles.index', compact('roles'));
     }
 }

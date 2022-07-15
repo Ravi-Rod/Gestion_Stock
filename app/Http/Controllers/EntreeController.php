@@ -112,5 +112,8 @@ class EntreeController extends Controller
     public function destroy(Entree $entree)
     {
         $entree->delete();
+        $entrees = Entree::all();
+        $produits = Produit::orderBy('libelle')->get();
+        return view('entrees.index', compact('produits'), compact('entrees'));
     }
 }
