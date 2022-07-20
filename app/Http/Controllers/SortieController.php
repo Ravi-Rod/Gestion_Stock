@@ -60,9 +60,9 @@ class SortieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Sortie $sortie)
+    public function show($id)
     {
-        
+        $sortie = Sortie::find($id);
         $produits = Produit::orderBy('libelle')->get();
         return view('sorties.show', compact('produits'), compact('sortie'));
     }
@@ -73,8 +73,9 @@ class SortieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sortie $sortie)
+    public function edit($id)
     {
+        $sortie = Sortie::find($id);
         $produits = Produit::orderBy('libelle')->get();
         return view('sorties.edit', compact('produits'), compact('sortie'));
     }
@@ -86,7 +87,7 @@ class SortieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, sortie $sortie)
+    public function update(Request $request, $id)
     {
         $data = $request->validate([
             'produit_id' =>['required'],
@@ -94,6 +95,7 @@ class SortieController extends Controller
             'prix' => ['required', 'integer', 'min:1'],
             'date' => ['required', 'date'],
         ]);
+        $sortie = Sortie::find($id);
         $sortie->produit_id = $request->produit_id;
         $sortie->quantite = $request->quantite;
         $sortie->prix = $request->prix;
@@ -108,8 +110,9 @@ class SortieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(sortie $sortie)
+    public function destroy($id)
     {
+        $sortie = Sortie::find($id);
         $sortie->delete();
         $sorties = Sortie::all();
         $produits = Produit::orderBy('libelle')->get();

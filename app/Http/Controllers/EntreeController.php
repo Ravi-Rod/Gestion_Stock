@@ -59,13 +59,13 @@ class EntreeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Entree $entree)
+    public function show(int $id)
     {
+        $entree = Entree::find($id);
         $produits = Produit::orderBy('libelle')->get();
-        return view('entrees.show', compact('produits'), compact('entree'));
+       return view('entrees.show', compact('produits'), compact('entree'));
     }
 
     /**
@@ -74,8 +74,9 @@ class EntreeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Entree $entree)
+    public function edit($id)
     {
+        $entree = Entree::find($id);
         $produits = Produit::orderBy('libelle')->get();
         return view('entrees.edit', compact('produits'), compact('entree'));
     }
@@ -87,7 +88,7 @@ class EntreeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Entree $entree)
+    public function update(Request $request, $id)
     {
         $data = $request->validate([
             'produit_id' =>['required'],
@@ -95,6 +96,7 @@ class EntreeController extends Controller
             'prix' => ['required', 'integer', 'min:1'],
             'date' => ['required', 'date'],
         ]);
+        $entree = Entree::find($id);
         $entree->produit_id = $request->produit_id;
         $entree->quantite = $request->quantite;
         $entree->prix = $request->prix;
@@ -109,8 +111,9 @@ class EntreeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Entree $entree)
+    public function destroy($id)
     {
+        $entree = Entree::find($id);
         $entree->delete();
         $entrees = Entree::all();
         $produits = Produit::orderBy('libelle')->get();

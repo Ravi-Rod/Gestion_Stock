@@ -17,7 +17,7 @@
             </div>
         @endif
 
-        <form action="{{ route('role.store') }}" method="post">
+        <form action="{{ route('Role.store') }}" method="post">
             @csrf
 
             <!-- NOM -->

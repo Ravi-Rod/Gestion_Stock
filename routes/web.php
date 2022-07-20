@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Entree;
+use App\Models\Categorie;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\EntreeController;
@@ -28,11 +31,16 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('categorie/create', function () {
-    return view('categorie.create');
-})->middleware('auth');
-Route::resource('Categorie', CategorieController::class)->middleware('auth');
 Route::resource('Produit', ProduitController::class)->middleware('auth');
 Route::resource('Role', RoleController::class)->middleware('auth');
 Route::resource('Entree', EntreeController::class)->middleware('auth');
 Route::resource('Sortie', SortieController::class)->middleware('auth');
+Route::resource('Categorie', CategorieController::class)->middleware('auth');
+
+Route::model('role', 'Role');
+Route::model('entree', 'Entree');
+// Route::bind('categorie', function($param)
+// {
+//     if($categorie = Categorie::find($param)) return $categorie;
+//     else App::abort(404);
+// });

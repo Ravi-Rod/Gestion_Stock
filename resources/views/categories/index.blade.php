@@ -24,16 +24,16 @@
                       <tr class="whitespace-nowrap">
                         <td class="px-4 py-4 text-sm text-gray-500">{{ $categorie->id }}</td>
                         <td class="px-4 py-4">{{ $categorie->nom }}</td>
-                        <x-link-button href="{{ route('categorie.show', $categorie->id) }}">
+                        <x-link-button href="{{ route('Categorie.show', $categorie->id) }}">
                             @lang('Voir')
                         </x-link-button>
-                        <x-link-button href="{{ route('categorie.edit', $categorie->id) }}">
+                        <x-link-button href="{{ route('Categorie.edit', $categorie->id) }}">
                             @lang('Modifier')
                         </x-link-button>
                         <x-link-button onclick="event.preventDefault(); document.getElementById('destroy{{ $categorie->id }}').submit();">
                             @lang('Supprimer')
                         </x-link-button>
-                        <form id="destroy{{ $categorie->id }}" action="{{ route('categorie.destroy', $categorie->id) }}" method="POST" style="display: none;">
+                        <form id="destroy{{ $categorie->id }}" action="{{ route('Categorie.destroy', $categorie->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>

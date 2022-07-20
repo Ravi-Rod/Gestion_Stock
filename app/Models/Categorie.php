@@ -13,6 +13,8 @@ class Categorie extends Model
     	'nom'
     ];
     
+    //protected $primaryKey = 'categorieId';
+
     public function produits()
     {
     	return $this->hasMany(Produit::class);

@@ -67,9 +67,9 @@ class ProduitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Produit $produit)
+    public function show($id)
     {
-        
+        $produit = Produit::find($id);
         $categories = Categorie::orderBy('nom')->get();
         return view('produits.show', compact('categories'), compact('produit'));
     }
@@ -80,8 +80,9 @@ class ProduitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produit $produit)
+    public function edit($id)
     {
+        $produit = Produit::find($id);
         $categories = Categorie::orderBy('nom')->get();
         return view('produits.edit', compact('categories'), compact('produit'));
     }
@@ -93,13 +94,14 @@ class ProduitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produit $produit)
+    public function update(Request $request, $id)
     {
         $data = $request->validate([
             'categorie_id' =>['required'],
             'libelle' => ['required', 'string', 'max:255'],
             'stock' => ['required', 'integer', 'min:1'],
         ]);
+        $produit = Produit::find($id);
         $produit->categorie_id = $request->categorie_id;
         $produit->user_id = Auth::user()->id;
         $produit->libelle = $request->libelle;
@@ -114,8 +116,10 @@ class ProduitController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produit $produit)
+    public function destroy($id)
     {
+        $produit = Produit::find($id);
+        //si j'avais laissé en parametre la classe (produit $produit) j'aurais juste pas eu besoin de la ligne au dessus.
         $produit->delete();
         $produits = Produit::all();
         $categories = Categorie::orderBy('nom')->get();

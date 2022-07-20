@@ -57,8 +57,9 @@ class CategorieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(categorie $categorie)
+    public function show(int $id)
     {
+        $categorie = categorie::find($id);
         
         return view('categories.show', compact('categorie'));
     }
@@ -69,8 +70,11 @@ class CategorieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(categorie $categorie)
+    public function edit($id)  //(Request $request)
     {
+        //$categorie = categorie::find($request->route('id'));
+        $categorie = categorie::find($id);
+
         return view('categories.edit', compact('categorie'));
     }
 
@@ -81,11 +85,13 @@ class CategorieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, categorie $categorie)
+    public function update(Request $request, $id)
     {
         $data = $request->validate([
             'nom' => 'required|max:100',
         ]);
+        
+        $categorie = categorie::find($id);
         $categorie->nom = $request->nom;
         $categorie->save();
         return back()->with('message', "Le categorie a bien été modifié !");
@@ -97,8 +103,11 @@ class CategorieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(categorie $categorie)
+    public function destroy($id)
     {
+        $categorie = categorie::find($id);
         $categorie->delete();
+        $categories = categorie::all();
+        return view('categories.index', compact('categories'));
     }
 }

@@ -17,7 +17,7 @@
             </div>
         @endif
 
-        <form action="{{ route('produit.store') }}" method="POST">
+        <form action="{{ route('Produit.store') }}" method="POST">
             @csrf
 
             <!-- Cat -->

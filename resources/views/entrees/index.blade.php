@@ -36,16 +36,16 @@
                         <td class="px-4 py-4">{{ $entree->quantite }}</td>
                         <td class="px-4 py-4">{{ $entree->prix }}</td>
                         <td class="px-4 py-4">{{ $entree->date }}</td>
-                        <x-link-button href="{{ route('entree.show', $entree->id) }}">
+                        <x-link-button href="{{ route('Entree.show', $entree->id) }}">
                             @lang('Voir')
                         </x-link-button>
-                        <x-link-button href="{{ route('entree.edit', $entree->id) }}">
+                        <x-link-button href="{{ route('Entree.edit', $entree->id) }}">
                             @lang('Modifier')
                         </x-link-button>
                         <x-link-button onclick="event.preventDefault(); document.getElementById('destroy{{ $entree->id }}').submit();">
                             @lang('Supprimer')
                         </x-link-button>
-                        <form id="destroy{{ $entree->id }}" action="{{ route('entree.destroy', $entree->id) }}" method="POST" style="display: none;">
+                        <form id="destroy{{ $entree->id }}" action="{{ route('Entree.destroy', $entree->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>

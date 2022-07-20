@@ -57,20 +57,20 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show($id)
     {
-        
+        $role = Role::find($id);
         return view('roles.show', compact('role'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
+        $role = Role::find($id);
         return view('roles.edit', compact('role'));
     }
 
@@ -81,11 +81,12 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
         $data = $request->validate([
             'nom' => 'required|max:100',
         ]);
+        $role = Role::find($id);
         $role->nom = $request->nom;
         $role->save();
         return back()->with('message', "Le role a bien été modifié !");
@@ -97,8 +98,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
+        $role = Role::find($id);
         $role->delete();
         $roles = Role::all();
         return view('roles.index', compact('roles'));

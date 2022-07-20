@@ -24,16 +24,16 @@
                       <tr class="whitespace-nowrap">
                         <td class="px-4 py-4 text-sm text-gray-500">{{ $role->id }}</td>
                         <td class="px-4 py-4">{{ $role->nom }}</td>
-                        <x-link-button href="{{ route('role.show', $role->id) }}">
+                        <x-link-button href="{{ route('Role.show', $role->id) }}">
                             @lang('Voir')
                         </x-link-button>
-                        <x-link-button href="{{ route('role.edit', $role->id) }}">
+                        <x-link-button href="{{ route('Role.edit', $role->id) }}">
                             @lang('Modifier')
                         </x-link-button>
                         <x-link-button onclick="event.preventDefault(); document.getElementById('destroy{{ $role->id }}').submit();">
                             @lang('Supprimer')
                         </x-link-button>
-                        <form id="destroy{{ $role->id }}" action="{{ route('role.destroy', $role->id) }}" method="POST" style="display: none;">
+                        <form id="destroy{{ $role->id }}" action="{{ route('Role.destroy', $role->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>

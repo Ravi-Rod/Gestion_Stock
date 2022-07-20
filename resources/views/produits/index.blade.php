@@ -29,22 +29,22 @@
                           <td class="px-4 py-4">
                               @foreach($categories as $categorie)
                                   @if ($categorie->id == $produit->categorie_id)
-                                  {{ $categorie->libelle }}
+                                  {{ $categorie->nom }}
                                   @endif
                               @endforeach
                           </td>
                         <td class="px-4 py-4">{{ $produit->libelle }}</td>
                         <td class="px-4 py-4">{{ $produit->stock }}</td>
-                        <x-link-button href="{{ route('produit.show', $produit->id) }}">
+                        <x-link-button href="{{ route('Produit.show', $produit->id) }}">
                             @lang('Voir')
                         </x-link-button>
-                        <x-link-button href="{{ route('produit.edit', $produit->id) }}">
+                        <x-link-button href="{{ route('Produit.edit', $produit->id) }}">
                             @lang('Modifier')
                         </x-link-button>
                         <x-link-button onclick="event.preventDefault(); document.getElementById('destroy{{ $produit->id }}').submit();">
                             @lang('Supprimer')
                         </x-link-button>
-                        <form id="destroy{{ $produit->id }}" action="{{ route('produit.destroy', $produit->id) }}" method="POST" style="display: none;">
+                        <form id="destroy{{ $produit->id }}" action="{{ route('Produit.destroy', $produit->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
                         </form>
